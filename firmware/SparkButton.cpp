@@ -77,10 +77,18 @@ void SparkButton::smoothLedOn(float i, uint8_t r, uint8_t g, uint8_t b){
     ring.show();
 }
 
-void SparkButton::ledOff(uint8_t i){
-    //i-1 shifts the location from human readable to the right index for the LEDs
-    //->ledOn(i,0,0,0);
-}
+void SparkButton::ledOff(uint8_t i){ 
+    //i-1 shifts the location from human readable to the right index for the LEDs 
+    if(i == 12){ 
+        ring.setPixelColor(0, ring.Color(0,0,0)); 
+        ring.setPixelColor(10, ring.Color(0,0,0)); 
+    } 
+    else{ 
+        ring.setPixelColor(i-1, ring.Color(0,0,0)); 
+    } 
+    ring.show(); 
+} 
+
 
 void SparkButton::allLedsOff(){
     for(int i = 0; i<PIXEL_COUNT; i++){
